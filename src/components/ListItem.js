@@ -10,9 +10,9 @@ class ListItem extends Component {
     }
     render(){
         return(
-            <div className="toDoItem">
-                {/* <input input="checkbox" ></input> */}
-                <div>{this.state.task}</div>
+            <div className="to-do-item">
+                <input input="checkbox" checked></input>
+                <div className>{this.state.task}{console.log(this.state.task)}</div>
             </div>
         )
 

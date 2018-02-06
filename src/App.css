@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: rgb(18, 78, 134);
   height: 150px;
   padding: 20px;
   color: white;
@@ -21,6 +21,31 @@
 .App-intro {
   font-size: large;
 }
+
+.to-do-item {
+  border: 4px solid #556674;
+  width: 500px;
+  height: 50px;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  display: flex;
+  padding: 5px;
+  align-items: center;
+}
+.to-do-item div{
+  color: #20282e;
+  font-family: sans-serif;
+  margin: 10px;
+
+}
+.list-container {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import ListContainer from './components/ListContainer';
-//import { builtinModules } from 'module';
+import ListItem from './components/ListItem';
 const baseUrl = 'http://localhost:3100';
 
 class App extends Component {
@@ -18,6 +18,10 @@ class App extends Component {
         {
           task: "Homework",
           id: 1          
+        },
+        {
+          task: "Feed the Dog",
+          id: 2
         }
       ]
     }
@@ -36,7 +40,7 @@ class App extends Component {
     
   }
 
-  // updateToDoList = () =>{
+  //updateToDoList = () =>{
   //   axios.get(`${baseUrl}/api/toDo`).then((response)=>{
   //     this.setState({toDoList: response})
   //     console.log(response);
@@ -47,6 +51,14 @@ class App extends Component {
   //     })
   //   }).catch(console.log);
   // }
+  // updateToDoList = ()=>{
+  //   this.state.toDoListItems.map((task, index)=>{
+  //     console.log(task.id);
+  //     return(
+  //       <ListItem id={task.id} task={task.task}></ListItem>
+  //     )
+  //   })
+  // }
   render() {
     return (
       <div className="App">
@@ -55,11 +67,10 @@ class App extends Component {
           <div>{`${this.state.whoSaidIt}`}</div>
           <button onClick={()=>{this.handleChange()}}>Click Me!</button>
         </header>
-        
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="list-container">
         <ListContainer tasks={this.state.toDoListItems}></ListContainer>
+        </div>
+        
         
       </div>
     );
