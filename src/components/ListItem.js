@@ -11,7 +11,7 @@ class ListItem extends Component {
     render(){
         return(
             <div className="to-do-item">
-                <input input="checkbox" checked></input>
+                <input className="checkbox" type="checkbox" name="item" value="yes"></input>
                 <div className>{this.state.task}{console.log(this.state.task)}</div>
             </div>
         )

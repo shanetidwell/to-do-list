@@ -3,12 +3,14 @@ import axios from 'axios';
 import './App.css';
 import ListContainer from './components/ListContainer';
 import ListItem from './components/ListItem';
+import QuoteContainer from './components/QuoteContainer'
 const baseUrl = 'http://localhost:3100';
 
 class App extends Component {
   constructor(props){
     super(props)
     this.state = {
+      newTask: '',
       quote: '',
       whoSaidIt: '',
       toDoListItems: [{
@@ -26,19 +28,8 @@ class App extends Component {
       ]
     }
   }
-  handleChange = ()=>{
-    axios({
-      method: "GET",
-      url: `http://quotes.rest/qod.json?category=inspire`
-    }).then(response=>{
-      console.log(response);
-      console.log(this.state.toDoListItems)
-      this.setState({quote: `"${response.data.contents.quotes[0].quote}"`,
-                    whoSaidIt: `-${response.data.contents.quotes[0].author}`
-                    });
-    }).catch(console.log);
+ 
     
-  }
 
   //updateToDoList = () =>{
   //   axios.get(`${baseUrl}/api/toDo`).then((response)=>{
@@ -59,16 +50,42 @@ class App extends Component {
   //     )
   //   })
   // }
+  
+  addTask = ()=>{
+    let newTask = {
+      task: this.state.newTask
+    };
+    axios ({
+      method: "POST",
+      url: baseUrl + '/api/toDo',
+      data: newTask
+    }).then(response=>{
+      this.setState({toDoListItems: response});
+    }).catch(console.log)
+  }
+  handleChange = (value)=>{
+    this.setState({newTask:value})
+
+  }
+  
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">{this.state.quote}</h1>
-          <div>{`${this.state.whoSaidIt}`}</div>
-          <button onClick={()=>{this.handleChange()}}>Click Me!</button>
+          {/* <h1 className="App-title">{this.state.quote}</h1> */}
+          {/* <div>{`${this.state.whoSaidIt}`}</div> */}
+          <QuoteContainer/>
+          {/* <button onClick={()=>{this.handleChange()}}>Click Me!</button> */}
         </header>
-        <div className="list-container">
-        <ListContainer tasks={this.state.toDoListItems}></ListContainer>
+        <div className="content">
+          <div className="list-container">
+          <ListContainer tasks={this.state.toDoListItems}></ListContainer>
+          </div>
+          <div className="new-task-container">
+            <input type="text" onChange={(e)=>this.handleChange(e.target.value)} placeholder="New To Do Item"></input>
+            <button onClick={()=>this.addTask()}>Add</button>
+          </div> 
         </div>
         
         
