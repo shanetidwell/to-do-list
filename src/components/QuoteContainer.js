@@ -8,6 +8,7 @@ class QuoteContainer extends Component {
         this.state = {
             quote:"",
             author:""
+            
         }
     }
     componentDidMount = () => {

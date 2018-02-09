@@ -23,13 +23,18 @@ module.exports = {
         res.send(toDoList);
     },
     delete:(req,res)=>{
-        toDoList.forEach((item, index)=>{
-            console.log(item.id, req.params.id, index)
-            if(item.id === Number(req.params.id)){
-                toDoList.splice(index,1);
+        const deleteID = req.params.id
+        toDoIndex = toDoList.findIndex(toDo=>toDo.id == deleteID);
+        console.log(toDoList)
+        console.log(toDoIndex)
+        toDoList.splice(toDoIndex, 1);
+        // toDoList.forEach((item, index)=>{
+        //     console.log(item.id, req.params.id, index)
+        //     if(item.id === Number(req.params.id)){
+        //         toDoList.splice(index,1);
 
-            }
-        })
+        //     }
+        // })
         res.send(toDoList);
     }
 }

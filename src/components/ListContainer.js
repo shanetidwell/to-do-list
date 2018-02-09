@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import ListItem from './ListItem';
 
-class ListContainer extends Component {
     
-  render() {
+  export default function generateList(props) {
+    console.log(props.tasks)
     return (
       <div>{        
-            this.props.tasks.map((task,index)=>{
-                console.log(999, task);
-            
-              return( <ListItem id={task.id} task={task.task} delete={this.props.delete}></ListItem>
+            props.tasks.map((task,index)=>{            
+              return( <ListItem id={task.id} task={task.task} delete={props.delete} index={index}></ListItem>
               )
             })
           }
@@ -17,6 +15,6 @@ class ListContainer extends Component {
       </div>
     )
   }
-}
 
-export default ListContainer;
+
+// export default ListContainer;

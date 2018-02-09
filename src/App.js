@@ -23,16 +23,14 @@ class App extends Component {
   componentDidMount = ()=>{
     axios.get(`${baseUrl}/api/toDo`).then((response)=>{
         this.setState({toDoListItems: response.data})
-        console.log('response', response.data)
     }).catch(console.log)
   }
+
   deleteTask = (id)=>{
-    console.log(444444,`${baseUrl}/api/toDo/${id}` )
     axios({
       method: "Delete",
       url:`${baseUrl}/api/toDo/${id}`
     }).then((response)=>{
-      console.log(55555, response)
       this.setState({toDoListItems: response.data});
     }).catch(console.log)
   }

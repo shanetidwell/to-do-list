@@ -42,11 +42,11 @@ class ListItem extends Component {
     render(){
         return(
             <div className="to-do-item">
-                <input onClick={()=>this.state.delete(this.state.id)} className="checkbox" type="checkbox" name="item" value="yes"></input>
+                <input onClick={()=>this.state.delete(this.state.id)}  className="checkbox" type="checkbox" name="item" value="yes" checked={false}></input>
                 {this.state.showEdit ? (
                     <input placeholder={this.state.task} onChange={(e)=>this.setState({task:e.target.value})} />
                 ) : (
-                <div className>{this.state.task}{console.log(this.state.task)}</div>
+                <div className>{this.props.task}</div>
                 )}
                 {!this.state.showEdit ?(
                 <button onClick={() => this.setState({ showEdit: true })}> Edit </button>
