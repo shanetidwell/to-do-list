@@ -13,6 +13,7 @@ module.exports = {
         res.send(toDoList)
     },
     update: (req,res)=>{
+        console.log(req.params.id);
         toDoList.forEach((item, index)=>{
             if(item.id === Number(req.params.id)){
                 let updatedItem = Object.assign({}, item, req.body);
@@ -23,6 +24,7 @@ module.exports = {
     },
     delete:(req,res)=>{
         toDoList.forEach((item, index)=>{
+            console.log(item.id, req.params.id, index)
             if(item.id === Number(req.params.id)){
                 toDoList.splice(index,1);
 

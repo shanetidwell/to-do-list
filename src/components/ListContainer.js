@@ -7,9 +7,9 @@ class ListContainer extends Component {
     return (
       <div>{        
             this.props.tasks.map((task,index)=>{
-                console.log(task);
-
-              return( <ListItem id={task.id} task={task.task}></ListItem>
+                console.log(999, task);
+            
+              return( <ListItem id={task.id} task={task.task} delete={this.props.delete}></ListItem>
               )
             })
           }

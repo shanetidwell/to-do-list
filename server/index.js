@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const cors = require('cors');
 const toDoController = require('./controllers/list_controller')
 
 const port=3100;
 app.use(bodyParser.json())
+app.use(cors());
 
 app.post('/api/toDo', toDoController.create);
 app.get('/api/toDo', toDoController.read);

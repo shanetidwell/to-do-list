@@ -13,54 +13,42 @@ class App extends Component {
       newTask: '',
       quote: '',
       whoSaidIt: '',
-      toDoListItems: [{
-        task: "Clean the bathroom",
-        id: 0
-        },
-        {
-          task: "Homework",
-          id: 1          
-        },
-        {
-          task: "Feed the Dog",
-          id: 2
-        }
-      ]
+      toDoListItems: []
     }
   }
  
     
 
-  //updateToDoList = () =>{
-  //   axios.get(`${baseUrl}/api/toDo`).then((response)=>{
-  //     this.setState({toDoList: response})
-  //     console.log(response);
-  //     this.state.toDoList.map((task, index)=>{
-  //       return(
-  //         <ListItem id={task.id} task={task.task}/>
-  //       ) 
-  //     })
-  //   }).catch(console.log);
-  // }
-  // updateToDoList = ()=>{
-  //   this.state.toDoListItems.map((task, index)=>{
-  //     console.log(task.id);
-  //     return(
-  //       <ListItem id={task.id} task={task.task}></ListItem>
-  //     )
-  //   })
-  // }
+
+  componentDidMount = ()=>{
+    axios.get(`${baseUrl}/api/toDo`).then((response)=>{
+        this.setState({toDoListItems: response.data})
+        console.log('response', response.data)
+    }).catch(console.log)
+  }
+  deleteTask = (id)=>{
+    console.log(444444,`${baseUrl}/api/toDo/${id}` )
+    axios({
+      method: "Delete",
+      url:`${baseUrl}/api/toDo/${id}`
+    }).then((response)=>{
+      console.log(55555, response)
+      this.setState({toDoListItems: response.data});
+    }).catch(console.log)
+  }
+  
   
   addTask = ()=>{
     let newTask = {
       task: this.state.newTask
     };
+    console.log(newTask);
     axios ({
       method: "POST",
       url: baseUrl + '/api/toDo',
       data: newTask
     }).then(response=>{
-      this.setState({toDoListItems: response});
+      this.setState({toDoListItems: response.data});
     }).catch(console.log)
   }
   handleChange = (value)=>{
@@ -73,6 +61,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+        <h1>To Do List</h1>
           {/* <h1 className="App-title">{this.state.quote}</h1> */}
           {/* <div>{`${this.state.whoSaidIt}`}</div> */}
           <QuoteContainer/>
@@ -80,7 +69,7 @@ class App extends Component {
         </header>
         <div className="content">
           <div className="list-container">
-          <ListContainer tasks={this.state.toDoListItems}></ListContainer>
+          <ListContainer tasks={this.state.toDoListItems} delete={this.deleteTask}></ListContainer>
           </div>
           <div className="new-task-container">
             <input type="text" onChange={(e)=>this.handleChange(e.target.value)} placeholder="New To Do Item"></input>

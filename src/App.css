@@ -13,10 +13,13 @@
   padding: 20px;
   color: white;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   
+}
+h1 {
+  font-size: 75px;
 }
 .quote-container{
   display: flex;
@@ -28,6 +31,7 @@
   margin: 10px 40px 20px 40px;
   font-family: Helvetica;
   font-size: 20px;
+  font-style: italic;
 }
 
 .App-title {
@@ -47,6 +51,7 @@
   display: flex;
   padding: 5px 5px 5px 25px;
   align-items: center;
+  justify-content: space-between;
 }
 .to-do-item div{
   color: #20282e;
