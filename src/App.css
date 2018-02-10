@@ -9,7 +9,7 @@
 
 .App-header {
   background-color: rgb(18, 78, 134);
-  height: 150px;
+  height: 100px;
   padding: 20px;
   color: white;
   display: flex;
@@ -44,8 +44,8 @@ h1 {
 
 .to-do-item {
   border: 4px solid #556674;
-  width: 450px;
-  height: 50px;
+  width: 425px;
+  height: 35px;
   margin-bottom: 15px;
   border-radius: 9px;
   display: flex;
@@ -74,10 +74,11 @@ h1 {
   align-items: center;
   justify-content: flex-start;
   border: 4px solid black;
-  height: 450px;
+  height: 420px;
   width: 500px;
   border-radius: 9px;
   margin-top: 25px;
+  overflow: auto;
 }
 .content{
   display: flex;

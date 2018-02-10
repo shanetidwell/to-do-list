@@ -18,12 +18,17 @@ class ListItem extends Component {
         var body = {
             task: this.state.task
         }
+        console.log(this.state.task)
+        console.log(`${baseUrl}/api/toDo/${this.state.id}`)
+        console.log(body)
         axios({
             method: "PUT",
             url: `${baseUrl}/api/toDo/${this.state.id}`,
             data: body
         }).then((response)=>{
+            console.log(this.state.id)
             console.log(11111, response);
+            this.props.update()
 
         }).catch(console.log)
     }
@@ -44,7 +49,7 @@ class ListItem extends Component {
             <div className="to-do-item">
                 <input onClick={()=>this.state.delete(this.state.id)}  className="checkbox" type="checkbox" name="item" value="yes" checked={false}></input>
                 {this.state.showEdit ? (
-                    <input placeholder={this.state.task} onChange={(e)=>this.setState({task:e.target.value})} />
+                    <input placeholder={this.props.task} onChange={(e)=>this.setState({task:e.target.value})} />
                 ) : (
                 <div className>{this.props.task}</div>
                 )}

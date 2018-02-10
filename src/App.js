@@ -18,11 +18,16 @@ class App extends Component {
   }
  
     
-
+refresh = ()=>{
+  this.setState({toDoListItems: this.state.toDoListItems})
+}
 
   componentDidMount = ()=>{
+   this.update()
+  }
+  update = () =>{
     axios.get(`${baseUrl}/api/toDo`).then((response)=>{
-        this.setState({toDoListItems: response.data})
+      this.setState({toDoListItems: response.data})
     }).catch(console.log)
   }
 
@@ -38,7 +43,7 @@ class App extends Component {
   
   addTask = ()=>{
     let newTask = {
-      task: this.state.newTask
+      task: this.state.newTask,
     };
     console.log(newTask);
     axios ({
@@ -67,7 +72,7 @@ class App extends Component {
         </header>
         <div className="content">
           <div className="list-container">
-          <ListContainer tasks={this.state.toDoListItems} delete={this.deleteTask}></ListContainer>
+          <ListContainer tasks={this.state.toDoListItems} delete={this.deleteTask} update={this.update}></ListContainer>
           </div>
           <div className="new-task-container">
             <input type="text" onChange={(e)=>this.handleChange(e.target.value)} placeholder="New To Do Item"></input>

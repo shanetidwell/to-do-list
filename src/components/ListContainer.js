@@ -7,7 +7,7 @@ import ListItem from './ListItem';
     return (
       <div>{        
             props.tasks.map((task,index)=>{            
-              return( <ListItem id={task.id} task={task.task} delete={props.delete} index={index}></ListItem>
+              return( <ListItem id={task.id} task={task.task} delete={props.delete} index={index} update={props.update}></ListItem>
               )
             })
           }

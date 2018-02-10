@@ -28,6 +28,7 @@ module.exports = {
         console.log(toDoList)
         console.log(toDoIndex)
         toDoList.splice(toDoIndex, 1);
+        toDoList.forEach((toDo, index)=>toDo.id = index)
         // toDoList.forEach((item, index)=>{
         //     console.log(item.id, req.params.id, index)
         //     if(item.id === Number(req.params.id)){
